@@ -1,0 +1,10 @@
+E:\Users\juanf\Documents\stima\test\test\bin\Debug\netcoreapp2.0\test.deps.json
+E:\Users\juanf\Documents\stima\test\test\bin\Debug\netcoreapp2.0\test.runtimeconfig.json
+E:\Users\juanf\Documents\stima\test\test\bin\Debug\netcoreapp2.0\test.runtimeconfig.dev.json
+E:\Users\juanf\Documents\stima\test\test\bin\Debug\netcoreapp2.0\test.dll
+E:\Users\juanf\Documents\stima\test\test\bin\Debug\netcoreapp2.0\test.pdb
+E:\Users\juanf\Documents\stima\test\test\obj\Debug\netcoreapp2.0\test.csproj.CoreCompileInputs.cache
+E:\Users\juanf\Documents\stima\test\test\obj\Debug\netcoreapp2.0\test.AssemblyInfoInputs.cache
+E:\Users\juanf\Documents\stima\test\test\obj\Debug\netcoreapp2.0\test.AssemblyInfo.cs
+E:\Users\juanf\Documents\stima\test\test\obj\Debug\netcoreapp2.0\test.dll
+E:\Users\juanf\Documents\stima\test\test\obj\Debug\netcoreapp2.0\test.pdb
