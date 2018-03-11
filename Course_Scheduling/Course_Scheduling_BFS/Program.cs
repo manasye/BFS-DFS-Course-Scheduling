@@ -24,7 +24,7 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string fileKuliah = @"E:\Users\juanf\Documents\stima\test\test\kuliah.txt";
+            string fileKuliah = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling_BFS\kuliah.txt";
             List<string> kuliah = File.ReadAllLines(fileKuliah).ToList();
             List<Matkul> listMatkul = new List<Matkul>();
             List<Matkul> UrutanMatkul = new List<Matkul>();

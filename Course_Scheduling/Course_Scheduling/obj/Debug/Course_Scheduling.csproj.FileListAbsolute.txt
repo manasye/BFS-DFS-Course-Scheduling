@@ -1,7 +1,0 @@
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\obj\Debug\Course_Scheduling.csprojResolveAssemblyReference.cache
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\obj\Debug\Course_Scheduling.csproj.CoreCompileInputs.cache
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\bin\Debug\Course_Scheduling.exe.config
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\bin\Debug\Course_Scheduling.exe
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\bin\Debug\Course_Scheduling.pdb
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\obj\Debug\Course_Scheduling.exe
-C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling\obj\Debug\Course_Scheduling.pdb
