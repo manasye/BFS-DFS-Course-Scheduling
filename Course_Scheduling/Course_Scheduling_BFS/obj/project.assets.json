@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\juanf\\Documents\\stima\\test\\test\\test.csproj",
+      "projectUniqueName": "E:\\Users\\juanf\\Documents\\GitHub\\BFS-DFS-Course-Scheduling\\Course_Scheduling\\Course_Scheduling_BFS\\test.csproj",
       "projectName": "test",
-      "projectPath": "E:\\Users\\juanf\\Documents\\stima\\test\\test\\test.csproj",
+      "projectPath": "E:\\Users\\juanf\\Documents\\GitHub\\BFS-DFS-Course-Scheduling\\Course_Scheduling\\Course_Scheduling_BFS\\test.csproj",
       "packagesPath": "E:\\Users\\juanf\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\juanf\\Documents\\stima\\test\\test\\obj\\",
+      "outputPath": "E:\\Users\\juanf\\Documents\\GitHub\\BFS-DFS-Course-Scheduling\\Course_Scheduling\\Course_Scheduling_BFS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

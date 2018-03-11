@@ -24,7 +24,7 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string fileKuliah = @"E:\Users\juanf\Documents\stima\test\test\kuliah.txt";
+            string fileKuliah = @"E:\Users\juanf\Documents\GitHub\BFS-DFS-Course-Scheduling\Course_Scheduling\Course_Scheduling_BFS\kuliah.txt";
             List<string> kuliah = File.ReadAllLines(fileKuliah).ToList();
             List<Matkul> listMatkul = new List<Matkul>();
             List<Matkul> UrutanMatkul = new List<Matkul>();
@@ -41,7 +41,6 @@ namespace test
                 listMatkul.Add(M);
             }
             int semesterMatkul = 1;
-
             BFS(listMatkul,semesterMatkul);
             foreach (Matkul matkul in listMatkul)
             {
