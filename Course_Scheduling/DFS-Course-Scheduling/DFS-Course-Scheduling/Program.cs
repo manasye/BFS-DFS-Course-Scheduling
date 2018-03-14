@@ -28,6 +28,7 @@ namespace DFS_Course_Scheduling
         public string nameOfCourses { get; set; }
         public int cOfAdj { get; set; }
         public List<Courses> adjCourses = new List<Courses>();
+        public float valOfTime { get; set; }
         public int startTime { get; set; }
         public int endTime { get; set; }
         public List<string> prerequisite = new List<string>();
@@ -42,6 +43,8 @@ namespace DFS_Course_Scheduling
             List<Courses> listOfCourses = new List<Courses>();
             List<Courses> orderOfCourses = new List<Courses>();
 
+            int semester = 0;
+
             foreach (string course in wholeCourses)
             {
                 Courses thisCourse = new Courses();
@@ -52,6 +55,7 @@ namespace DFS_Course_Scheduling
                 thisCourse.semester = 0;
                 thisCourse.startTime = 0;
                 thisCourse.endTime = 0;
+                thisCourse.semester = 0;
                 thisCourse.courseChecked = false;
                 thisCourse.cOfAdj = prerequisite.Count;
                 listOfCourses.Add(thisCourse);
@@ -59,15 +63,15 @@ namespace DFS_Course_Scheduling
 
             foreach (Courses course in listOfCourses)
             {
-                foreach (Courses aCourse in listOfCourses)
+                foreach (Courses anCourse in listOfCourses)
                 {
-                    if(aCourse != course)
+                    if(anCourse != course)
                     {
-                        foreach(string name in aCourse.prerequisite)
+                        foreach(string name in anCourse.prerequisite)
                         {
                             if(name == course.nameOfCourses)
                             {
-                                course.adjCourses.Add(aCourse);
+                                course.adjCourses.Add(anCourse);
                             }
                         }
                     }
@@ -77,8 +81,7 @@ namespace DFS_Course_Scheduling
             foreach (Courses course in listOfCourses)
             {
                 if(course.prerequisite.Count == 0)
-                {
-                   
+                {                   
                     course.courseChecked = true;
                     Courses.timeStamp += 1;
                     course.startTime = Courses.timeStamp;
@@ -90,10 +93,32 @@ namespace DFS_Course_Scheduling
 
             foreach (Courses course in listOfCourses)
             {
-                Console.WriteLine(course.nameOfCourses);
-                Console.WriteLine("{0}/{1}",course.startTime,course.endTime);
+                course.valOfTime = (float)course.startTime / (float)course.endTime;
             }
-                       
+                      
+            List<Courses> sortedCourses = listOfCourses.OrderBy(o => o.valOfTime).ToList();
+
+            foreach (Courses course in sortedCourses)
+            {
+                if (course.semester == 0)
+                {                    
+                    semester += 1;
+
+                    foreach (Courses anCourse in sortedCourses)
+                    {
+                        if(course.valOfTime == anCourse.valOfTime)
+                        {
+                            anCourse.semester = semester;
+                        }
+                    }
+                }
+            }
+
+            foreach (Courses course in listOfCourses)
+            {
+                Console.WriteLine("{0} is taken at semester {1}",course.nameOfCourses,course.semester);
+            }
+                        
         }
 
         static int numOfChecked(List<Courses> listOfCourses)
