@@ -37,7 +37,7 @@ namespace DFS_Course_Scheduling
     {
         static void Main(string[] args)
         {
-            string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling_BFS\kuliah.txt";
+            string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\file.txt";
             List<string> wholeCourses = File.ReadAllLines(fileOfCourses).ToList();
             List<Courses> listOfCourses = new List<Courses>();
             List<Courses> orderOfCourses = new List<Courses>();
@@ -74,45 +74,27 @@ namespace DFS_Course_Scheduling
                 }
             }
 
-            //foreach(Courses course in listOfCourses)
-            //{
-            //    foreach(Courses adjCourse in course.adjCourses)
-            //    {
-            //        Console.WriteLine(adjCourse.nameOfCourses);
-            //    }
-            //}
+            foreach (Courses course in listOfCourses)
+            {
+                if(course.prerequisite.Count == 0)
+                {
+                   
+                    course.courseChecked = true;
+                    Courses.timeStamp += 1;
+                    course.startTime = Courses.timeStamp;
+                    DFS(course.adjCourses, Courses.numOfCourses);
+                    Courses.timeStamp += 1;
+                    course.endTime = Courses.timeStamp;
+                }
+            }
 
-            int numOfCourses = Courses.getNumCourses;
-            Console.WriteLine(numOfCourses);
-
-            //foreach (Courses course in listOfCourses)
-            //{
-            //    Console.WriteLine("========================");
-            //    Console.WriteLine(course.nameOfCourses);
-            //    Console.WriteLine(course.cOfAdj);
-            //    //foreach(string adjCourse in course.adjCourses)
-            //    //{
-            //    //    Console.WriteLine(adjCourse);
-            //    //}
-            //    Console.WriteLine("========================");
-            //}
+            foreach (Courses course in listOfCourses)
+            {
+                Console.WriteLine(course.nameOfCourses);
+                Console.WriteLine("{0}/{1}",course.startTime,course.endTime);
+            }
+                       
         }
-
-        //static bool notAllChecked(List<Courses> listOfCourses)
-        //{
-        //    bool check = false;
-
-        //    foreach (Courses course in listOfCourses)
-        //    {
-        //        if (!(course.courseChecked))
-        //        {
-        //            check = true;
-        //            break;
-        //        }
-        //    }
-
-        //    return check;
-        //}
 
         static int numOfChecked(List<Courses> listOfCourses)
         {
@@ -129,29 +111,25 @@ namespace DFS_Course_Scheduling
             return count;
         }
 
-        static void DFS(List<Courses> listOfCourses, int semester, int numOfCourses)
+        static void DFS(List<Courses> listOfCourses, int numOfCourses)
         {
-
+            if(listOfCourses.Count == 0)
+            {
+                return;
+            }
+             
             foreach(Courses course in listOfCourses)
             {
-                if(course.cOfAdj == 0)
+                if (course.courseChecked == false)
                 {
                     course.courseChecked = true;
                     Courses.timeStamp += 1;
+
                     course.startTime = Courses.timeStamp;
+                    DFS(course.adjCourses, numOfCourses);
+                    Courses.timeStamp += 1;
+                    course.endTime = Courses.timeStamp;
                 }
-
-                DFS(listOfCourses, semester, numOfCourses);
-            }
-
-            if (numOfChecked(listOfCourses) == numOfCourses)
-            {
-                Courses.timeStamp += 1;
-            }
-
-            else
-            {
-
             }
         }
 
