@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-C1,C3
-C2,C1,C4
-C3
-C4,C1,C3
-C5,C2,C4
-=======
-=======
->>>>>>> ba1c91bdcd90e0552a593ff5553db0344dca1812
 SPT,jarkom
 PPL,Basdat,IMK
 SI,DRPL
@@ -30,9 +20,4 @@ Probstat,tpb2
 Matdis,tpb2
 alstrukdat,tpb2
 tpb2,tpb1
-<<<<<<< HEAD
 tpb1
->>>>>>> ba1c91bdcd90e0552a593ff5553db0344dca1812
-=======
-tpb1
->>>>>>> ba1c91bdcd90e0552a593ff5553db0344dca1812
