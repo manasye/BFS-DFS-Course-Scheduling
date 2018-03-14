@@ -1,5 +1,31 @@
+<<<<<<< HEAD
 C1,C3
 C2,C1,C4
 C3
 C4,C1,C3
 C5,C2,C4
+=======
+SPT,jarkom
+PPL,Basdat,IMK
+SI,DRPL
+jarkom,OS
+PBasdat,Basdat
+AI,Probstat,Stima,TBFO
+IMK,DRPL
+MRPL,DRPL
+PAPK,OOP
+PABW,OOP
+OS,Orkom
+Basdat,Orkom,Logif
+TBFO,Matdis
+Stima,alstrukdat
+DRPL,alstrukdat
+OOP,alstrukdat
+Orkom,tpb2
+Logif,tpb2
+Probstat,tpb2
+Matdis,tpb2
+alstrukdat,tpb2
+tpb2,tpb1
+tpb1
+>>>>>>> ba1c91bdcd90e0552a593ff5553db0344dca1812
