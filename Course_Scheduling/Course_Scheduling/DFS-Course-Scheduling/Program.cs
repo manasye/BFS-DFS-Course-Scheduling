@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+//using Gtk;
 
 namespace DFS_Course_Scheduling
 {
@@ -90,8 +91,8 @@ namespace DFS_Course_Scheduling
 
             else
             {
-                string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\file.txt";
-                ////string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling_BFS\kuliah.txt";
+                //string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\file.txt";
+                string fileOfCourses = @"C:\Users\manasyebukit\Documents\GitHub\BFS-DFS-Courses-Scheduling\Course_Scheduling\Course_Scheduling_BFS\kuliah.txt";
                 List<string> wholeCourses = File.ReadAllLines(fileOfCourses).ToList();
                 List<Courses> listOfCourses = new List<Courses>();
 
@@ -156,6 +157,7 @@ namespace DFS_Course_Scheduling
                 {
                     if (course.prerequisiteName.Count == 0)
                     {
+                        course.semester = 1;
                         sortDFS(course, solution);
                     }
                 }
@@ -163,23 +165,23 @@ namespace DFS_Course_Scheduling
                 int len = solution.Count - 1;
                 for (int i = len; i >= 0; i--)
                 {
-                    semester += 1;
-                    Console.WriteLine(solution[i].nameOfCourses);
+                    //Console.WriteLine(solution[i].nameOfCourses);
                     foreach (Courses course in listOfCourses)
                     {
                         if (course == solution[i])
                         {
-                            course.semester = semester;
+                            int parentSemester = getMaxSemester(course);
+                            course.semester = parentSemester + 1;
                         }
                     }
                 }
 
-                // Set the timestamp attribute
-                foreach (Courses course in listOfCourses)
-                {
-                    course.valOfTime = (float)course.startTime / (float)course.endTime;
-                    Console.WriteLine("{0}/{1}", course.startTime, course.endTime);
-                }
+                //// Set the timestamp attribute
+                //foreach (Courses course in listOfCourses)
+                //{
+                //    course.valOfTime = (float)course.startTime / (float)course.endTime;
+                //    Console.WriteLine("{0}/{1}", course.startTime, course.endTime);
+                //}
 
                 foreach (Courses course in listOfCourses)
                 {
@@ -189,75 +191,19 @@ namespace DFS_Course_Scheduling
                         
         }
 
-        //static bool notAllChecked(List<Courses> listOfCourses)
-        //{
-        //    bool check = false;
-        //    foreach (Courses course in listOfCourses)
-        //    {
-        //        if (!(course.courseChecked))
-        //        {
-        //            check = true;
-        //            break;
-        //        }
-        //    }
-        //    return check;
-        //}
-
-        // Sort course based on it's timestamp (increasing trend)
-        //List<Courses> sortedCourses = listOfCourses.OrderBy(o => o.valOfTime).ToList();
-
-        //// Set the semester's attribute according to the sorted value
-        //foreach (Courses course in sortedCourses)
-        //{
-        //    if (course.semester == 0)
-        //    {                    
-        //        semester += 1;
-
-        //        foreach (Courses anCourse in sortedCourses)
-        //        {
-        //            if(course.valOfTime == anCourse.valOfTime)
-        //            {
-        //                anCourse.semester = semester;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //// Print the result
-        //foreach (Courses course in listOfCourses)
-        //{
-        //    Console.WriteLine("{0} is taken at semester {1}",course.nameOfCourses,course.semester);
-        //}
-
-        //static int numOfChecked(List<Courses> listOfCourses)
-        //{
-        //    int count = 0;
-        //    foreach (Courses course in listOfCourses)
-        //    {
-        //        if (course.courseChecked)
-        //        {
-        //            count++;
-        //        }
-        //    }
-        //    return count;
-        //}
-
-        //static bool prereqChecked(Courses course)
-        //{
-        //    bool valid = true;
-        //    foreach (Courses anCourse in course.prerequisite)
-        //    {
-        //        if (anCourse.courseChecked == false)
-        //        {
-        //            valid = false;
-        //            break;
-        //        }
-        //    }
-        //    return valid;
-        //}
-
-        // Function to do the topological sorting with DFS
-
+        static int getMaxSemester(Courses course)
+        {
+            int max = 0;
+            foreach (Courses anCourse in course.prerequisite)
+            {
+                if (anCourse.semester >= max)
+                {
+                    max = anCourse.semester;
+                }
+            }
+            return max;
+        }
+               
         static void sortDFS(Courses course, List<Courses> solution)
         {
             Courses.timeStamp += 1;
