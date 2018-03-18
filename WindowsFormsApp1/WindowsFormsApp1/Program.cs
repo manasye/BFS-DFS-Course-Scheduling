@@ -58,136 +58,136 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Form1 Form = new Form1();
-            Application.Run(Form);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Form1 Form = new Form1();
+            //Application.Run(Form);
 
-            Console.WriteLine("Pick one command");
-            Console.WriteLine("1. Sort by BFS");
-            Console.WriteLine("2. Sort by DFS");
-            Console.Write(">>> ");
+            //Console.WriteLine("Pick one command");
+            //Console.WriteLine("1. Sort by BFS");
+            //Console.WriteLine("2. Sort by DFS");
+            //Console.Write(">>> ");
 
-            int cmd = Int32.Parse(Console.ReadLine());
-            string file = @Form.fileToOpen;
+            //int cmd = Int32.Parse(Console.ReadLine());
+            //string file = @Form.fileToOpen;
 
-            if (cmd == 1)
-            {
-                List<string> kuliah = File.ReadAllLines(file).ToList();
-                List<Matkul> listMatkul = new List<Matkul>();
-                List<Matkul> UrutanMatkul = new List<Matkul>();
+            //if (cmd == 1)
+            //{
+            //    List<string> kuliah = File.ReadAllLines(file).ToList();
+            //    List<Matkul> listMatkul = new List<Matkul>();
+            //    List<Matkul> UrutanMatkul = new List<Matkul>();
 
-                foreach (string linekuliah in kuliah)
-                {
-                    Matkul M = new Matkul();
-                    List<string> matk = linekuliah.Split(',').ToList();
-                    M.nama = matk[0];
-                    matk.RemoveAt(0);
-                    M.syaratMatkul = matk;
-                    M.countSyarat = matk.Count;
-                    M.matkulChecked = false;
-                    M.semester = 0;
-                    listMatkul.Add(M);
-                }
+            //    foreach (string linekuliah in kuliah)
+            //    {
+            //        Matkul M = new Matkul();
+            //        List<string> matk = linekuliah.Split(',').ToList();
+            //        M.nama = matk[0];
+            //        matk.RemoveAt(0);
+            //        M.syaratMatkul = matk;
+            //        M.countSyarat = matk.Count;
+            //        M.matkulChecked = false;
+            //        M.semester = 0;
+            //        listMatkul.Add(M);
+            //    }
 
-                int semesterMatkul = 1;
-                BFS(listMatkul, semesterMatkul);
-                foreach (Matkul matkul in listMatkul)
-                {
-                    Console.WriteLine("Matkul " + matkul.nama + " diambil pada semester " + matkul.semester);
-                }
-            }
+            //    int semesterMatkul = 1;
+            //    BFS(listMatkul, semesterMatkul);
+            //    foreach (Matkul matkul in listMatkul)
+            //    {
+            //        Console.WriteLine("Matkul " + matkul.nama + " diambil pada semester " + matkul.semester);
+            //    }
+            //}
 
-            else
-            {
-                List<string> wholeCourses = File.ReadAllLines(file).ToList();
-                List<Courses> listOfCourses = new List<Courses>();
+            //else
+            //{
+            //    List<string> wholeCourses = File.ReadAllLines(file).ToList();
+            //    List<Courses> listOfCourses = new List<Courses>();
 
-                int semester = 0;
+            //    int semester = 0;
 
-                // Split courses and set its attributes
-                foreach (string course in wholeCourses)
-                {
-                    Courses thisCourse = new Courses();
-                    List<string> prerequisiteName = course.Split(',').ToList();
-                    thisCourse.nameOfCourses = prerequisiteName[0];
-                    prerequisiteName.RemoveAt(0);
-                    thisCourse.prerequisiteName = prerequisiteName;
-                    thisCourse.semester = 0;
-                    thisCourse.startTime = 0;
-                    thisCourse.endTime = 0;
-                    thisCourse.semester = 0;
-                    thisCourse.courseChecked = false;
-                    thisCourse.cOfAdj = prerequisiteName.Count;
-                    listOfCourses.Add(thisCourse);
-                }
+            //    // Split courses and set its attributes
+            //    foreach (string course in wholeCourses)
+            //    {
+            //        Courses thisCourse = new Courses();
+            //        List<string> prerequisiteName = course.Split(',').ToList();
+            //        thisCourse.nameOfCourses = prerequisiteName[0];
+            //        prerequisiteName.RemoveAt(0);
+            //        thisCourse.prerequisiteName = prerequisiteName;
+            //        thisCourse.semester = 0;
+            //        thisCourse.startTime = 0;
+            //        thisCourse.endTime = 0;
+            //        thisCourse.semester = 0;
+            //        thisCourse.courseChecked = false;
+            //        thisCourse.cOfAdj = prerequisiteName.Count;
+            //        listOfCourses.Add(thisCourse);
+            //    }
 
-                // Search the corresponding string course's name with its course's object
-                foreach (Courses course in listOfCourses)
-                {
-                    List<Courses> listOfPrerequisite = new List<Courses>();
-                    foreach (Courses anCourse in listOfCourses)
-                    {
-                        foreach (string name in course.prerequisiteName)
-                        {
-                            if (name == anCourse.nameOfCourses)
-                            {
-                                listOfPrerequisite.Add(anCourse);
-                            }
-                        }
-                    }
-                    course.prerequisite = listOfPrerequisite;
-                }
+            //    // Search the corresponding string course's name with its course's object
+            //    foreach (Courses course in listOfCourses)
+            //    {
+            //        List<Courses> listOfPrerequisite = new List<Courses>();
+            //        foreach (Courses anCourse in listOfCourses)
+            //        {
+            //            foreach (string name in course.prerequisiteName)
+            //            {
+            //                if (name == anCourse.nameOfCourses)
+            //                {
+            //                    listOfPrerequisite.Add(anCourse);
+            //                }
+            //            }
+            //        }
+            //        course.prerequisite = listOfPrerequisite;
+            //    }
 
-                // Search for adjacent node
-                foreach (Courses course in listOfCourses)
-                {
-                    foreach (Courses anCourse in listOfCourses)
-                    {
-                        if (anCourse != course)
-                        {
-                            foreach (string name in anCourse.prerequisiteName)
-                            {
-                                if (name == course.nameOfCourses)
-                                {
-                                    course.adjCourses.Add(anCourse);
-                                }
-                            }
-                        }
-                    }
-                }
+            //    // Search for adjacent node
+            //    foreach (Courses course in listOfCourses)
+            //    {
+            //        foreach (Courses anCourse in listOfCourses)
+            //        {
+            //            if (anCourse != course)
+            //            {
+            //                foreach (string name in anCourse.prerequisiteName)
+            //                {
+            //                    if (name == course.nameOfCourses)
+            //                    {
+            //                        course.adjCourses.Add(anCourse);
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
 
-                List<Courses> solution = new List<Courses>();
+            //    List<Courses> solution = new List<Courses>();
 
-                // Handle course with 0 prerequisite as a starting point
-                foreach (Courses course in listOfCourses)
-                {
-                    if (course.prerequisiteName.Count == 0)
-                    {
-                        course.semester = 1;
-                        sortDFS(course, solution);
-                    }
-                }
+            //    // Handle course with 0 prerequisite as a starting point
+            //    foreach (Courses course in listOfCourses)
+            //    {
+            //        if (course.prerequisiteName.Count == 0)
+            //        {
+            //            course.semester = 1;
+            //            sortDFS(course, solution);
+            //        }
+            //    }
 
-                int len = solution.Count - 1;
-                for (int i = len; i >= 0; i--)
-                {
-                    //Console.WriteLine(solution[i].nameOfCourses);
-                    foreach (Courses course in listOfCourses)
-                    {
-                        if (course == solution[i])
-                        {
-                            int parentSemester = getMaxSemester(course);
-                            course.semester = parentSemester + 1;
-                        }
-                    }
-                }
+            //    int len = solution.Count - 1;
+            //    for (int i = len; i >= 0; i--)
+            //    {
+            //        //Console.WriteLine(solution[i].nameOfCourses);
+            //        foreach (Courses course in listOfCourses)
+            //        {
+            //            if (course == solution[i])
+            //            {
+            //                int parentSemester = getMaxSemester(course);
+            //                course.semester = parentSemester + 1;
+            //            }
+            //        }
+            //    }
 
-                foreach (Courses course in listOfCourses)
-                {
-                    Console.WriteLine("{0} is taken in semester {1}", course.nameOfCourses, course.semester);
-                }
-            }
+            //    foreach (Courses course in listOfCourses)
+            //    {
+            //        Console.WriteLine("{0} is taken in semester {1}", course.nameOfCourses, course.semester);
+            //    }
+            //}
 
         }
 
