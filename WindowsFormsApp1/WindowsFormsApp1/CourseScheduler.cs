@@ -4,9 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
-using QuickGraph;
-using QuickGraph.Graphviz;
-using QuickGraph.Graphviz.Dot;
 
 namespace WindowsFormsApp1
 {
@@ -320,7 +317,7 @@ namespace WindowsFormsApp1
                 foreach (string linekuliah in kuliah)
                 {
                     Matkul M = new Matkul();
-                    List<string> matk = linekuliah.Split(',').ToList();
+                    List<string> matk = linekuliah.Split(new char[] { ',', ' ', '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     M.nama = matk[0];
                     matk.RemoveAt(0);
                     M.syaratMatkul = matk;
@@ -435,7 +432,7 @@ namespace WindowsFormsApp1
                 foreach (string course in wholeCourses)
                 {
                     Courses thisCourse = new Courses();
-                    List<string> prerequisiteName = course.Split(',').ToList();
+                    List<string> prerequisiteName = course.Split(new char[] { ',', ' ', '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                     thisCourse.nameOfCourses = prerequisiteName[0];
                     prerequisiteName.RemoveAt(0);
                     thisCourse.prerequisiteName = prerequisiteName;
@@ -561,20 +558,66 @@ namespace WindowsFormsApp1
         //
         public void DisplayGraph(string fileCourse)
         {
+            List<string> wholeCourses = File.ReadAllLines(fileCourse).ToList();
+            List<Courses> listOfCourses = new List<Courses>();
+
+            foreach (string course in wholeCourses)
+            {
+                Courses thisCourse = new Courses();
+                List<string> prerequisiteName = course.Split(new char[]{ ',',' ','.'}, StringSplitOptions.RemoveEmptyEntries).ToList();
+                thisCourse.nameOfCourses = prerequisiteName[0];
+                prerequisiteName.RemoveAt(0);
+                thisCourse.prerequisiteName = prerequisiteName;
+                thisCourse.semester = 0;
+                thisCourse.startTime = 0;
+                thisCourse.endTime = 0;
+                thisCourse.semester = 0;
+                thisCourse.courseChecked = false;
+                thisCourse.cOfAdj = prerequisiteName.Count;
+                listOfCourses.Add(thisCourse);
+            }
             Form form = new Form();
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            graph.AddEdge("A", "B");
-            graph.AddEdge("B", "C");
-            graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-            graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
-            graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
-            Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
-            c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
-            c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
+
+            Random r = new Random();    
+            foreach (Courses course in listOfCourses)
+            {
+                foreach (Courses anCourse in listOfCourses)
+                {
+                    if (course != anCourse)
+                    {
+                        foreach (string prereq in anCourse.prerequisiteName)
+                        {
+                            if (prereq == course.nameOfCourses)
+                            {
+                                graph.AddEdge(course.nameOfCourses, anCourse.nameOfCourses).Attr.Color = 
+                                    Microsoft.Msagl.Drawing.Color.BlueViolet;
+                                break;
+                            }
+                        }
+                    }
+                }        
+            }
+
+            foreach (Courses course in listOfCourses)
+            {
+                graph.FindNode(course.nameOfCourses).Attr.FillColor = 
+                    Microsoft.Msagl.Drawing.Color.Aqua;
+                graph.FindNode(course.nameOfCourses).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+            }
+
+            //graph.AddEdge("A", "B");
+            //graph.AddEdge("B", "C");
+            //graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+            //graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
+            //graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+            //Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
+            //c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
+            //c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
             viewer.Graph = graph;
             form.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            viewer.Dock = DockStyle.Fill;
             form.Controls.Add(viewer);
             form.ResumeLayout();
             form.ShowDialog();
