@@ -127,15 +127,20 @@ namespace WindowsFormsApp1
         //
         // All the atribute used for GUI
         //
-        public Button showGraph;
+        public Button showResult;
         public Button browseFile;
         public TextBox nameBox;
+        public TextBox result;
+        public TextBox process;
         public Label selectLabel;
         public coolButton bfsButton;
+        public bool bfsClicked = false;
         public coolButton dfsButton;
+        public bool dfsClicked = false;
         public string fileToOpen = "";
-        public int option = -1;
         public bool isButtonClicked = false;
+        private List<Courses> listCourse = new List<Courses>();
+        private List<Matkul> listMataKuliah = new List<Matkul>();
 
         //
         // The default constructor
@@ -152,14 +157,16 @@ namespace WindowsFormsApp1
         {
             Text = "CourseHelpie App";
             Location = new Point(350, 150);
-            BackColor = Color.CadetBlue;
+            BackColor = Color.LightGray;
             Size = new Size(650, 500);
-            showGraph = new Button();
+            showResult = new Button();
             browseFile = new Button();
             nameBox = new TextBox();
+            result = new TextBox();
+            process = new TextBox();
             selectLabel = new Label();
-            coolButton bfsButton = new coolButton();
-            coolButton dfsButton = new coolButton();
+            bfsButton = new coolButton();
+            dfsButton = new coolButton();
 
             //
             // Label for title
@@ -167,7 +174,6 @@ namespace WindowsFormsApp1
 
             Label title = new Label
             {
-                MaximumSize = new Size(600, 500),
                 AutoSize = true,
                 Location = new Point(133, 20),
                 Text = "Welcome to CourseHelpie App",
@@ -180,8 +186,7 @@ namespace WindowsFormsApp1
 
             bfsButton.Cursor = Cursors.Hand;
             bfsButton.AccessibleName = "bfsButton";
-            bfsButton.Location = new Point(150, 170);
-            bfsButton.Size = new Size(100, 100);
+            bfsButton.Location = new Point(150, 110);
             bfsButton.Text = "Do the bfs";
             bfsButton.Click += new EventHandler(DoTheBFS);
             
@@ -191,28 +196,75 @@ namespace WindowsFormsApp1
             
             dfsButton.Cursor = Cursors.Hand;
             dfsButton.AccessibleName = "dfsButton";
-            dfsButton.Location = new Point(370, 170);
-            dfsButton.Size = new Size(100, 100);
+            dfsButton.Location = new Point(370, 110);
             dfsButton.Text = "Do the dfs";
             dfsButton.Click += new EventHandler(DoTheDFS);
+
+            //
+            // Label for process title
+            //
+
+            Label processLabel = new Label
+            {
+                AutoSize = true,
+                Location = new Point(70, 180),
+                Text = "The process is here",
+                Font = new Font("Arial", 10, FontStyle.Bold)
+            };
+
+            //
+            // Label for result title
+            //
+
+            Label resultLabel = new Label
+            {
+                AutoSize = true,
+                Location = new Point(410, 180),
+                Text = "The result is here",
+                Font = new Font("Arial", 10, FontStyle.Bold)
+            };
+
+
+            // 
+            // Process text box
+            // 
+
+            process.AutoSize = false;
+            process.Font = new Font("Arial", 10, FontStyle.Regular);
+            process.Multiline = true;
+            process.Location = new Point(20, 200);
+            process.Size = new Size(270, 200);
+            process.ScrollBars = ScrollBars.Both;
+            process.WordWrap = false;
+
+            // 
+            // Result text box
+            // 
+
+            result.AutoSize = false;
+            result.Multiline = true;
+            result.Font = new Font("Arial", 10, FontStyle.Regular);
+            result.Location = new Point(350, 200);
+            result.Size = new Size(260, 200);
+            result.ScrollBars = ScrollBars.Both;
+            result.WordWrap = false;
 
             // 
             // Show the result of sorted graph
             //
 
-            showGraph.Cursor = Cursors.Hand;
-            showGraph.Dock = DockStyle.Bottom;
-            showGraph.Enabled = false;
-            showGraph.FlatStyle = FlatStyle.System;
-            showGraph.Font = new Font("Segoe UI", 10.5F);
-            showGraph.Location = new Point(0, 104);
-            showGraph.Margin = new Padding(4);
-            showGraph.Name = "showGraph";
-            showGraph.Size = new Size(594, 47);
-            showGraph.TabIndex = 1;
-            showGraph.Text = "Show The Result Here";
-            showGraph.UseVisualStyleBackColor = true;
-            //showGraph.Click += new System.EventHandler(showGraph_Click);
+            showResult.Cursor = Cursors.Hand;
+            showResult.Dock = DockStyle.Bottom;
+            showResult.Enabled = false;
+            showResult.FlatStyle = FlatStyle.System;
+            showResult.Font = new Font("Segoe UI", 11);
+            showResult.Location = new Point(0, 104);
+            showResult.Margin = new Padding(4);
+            showResult.Size = new Size(594, 47);
+            showResult.TabIndex = 1;
+            showResult.Text = "Show The Result";
+            showResult.UseVisualStyleBackColor = true;
+            showResult.Click += new EventHandler(Show_Result);
 
             // 
             // browseFile
@@ -221,12 +273,12 @@ namespace WindowsFormsApp1
             browseFile.Cursor = Cursors.Hand;
             browseFile.FlatStyle = FlatStyle.System;
             browseFile.Font = new Font("Segoe UI", 10F);
-            browseFile.Location = new Point(546, 63);
+            browseFile.Location = new Point(541, 61);
             browseFile.Margin = new Padding(8, 8, 0, 0);
-            browseFile.Name = "browseFile";
+            browseFile.AutoSize = true;
             browseFile.Size = new Size(28, 25);
             browseFile.TabIndex = 3;
-            browseFile.Text = "...";
+            browseFile.Text = "Browse";
             browseFile.UseVisualStyleBackColor = true;
             browseFile.Click += new EventHandler(Browse_File);
 
@@ -236,7 +288,6 @@ namespace WindowsFormsApp1
 
             nameBox.Location = new Point(203, 66);
             nameBox.Margin = new Padding(4, 8, 0, 0);
-            nameBox.Name = "nameBox";
             nameBox.Size = new Size(325, 25);
             nameBox.TabIndex = 2;
             nameBox.KeyDown += new KeyEventHandler(Tb_KeyDown);
@@ -260,13 +311,17 @@ namespace WindowsFormsApp1
             // Add all UI
             //
 
-            Controls.Add(showGraph);
+            Controls.Add(showResult);
             Controls.Add(nameBox);
             Controls.Add(browseFile);
             Controls.Add(selectLabel);
             Controls.Add(title);
             Controls.Add(bfsButton);
             Controls.Add(dfsButton);
+            Controls.Add(process);
+            Controls.Add(result);
+            Controls.Add(processLabel);
+            Controls.Add(resultLabel);
         }
 
         //
@@ -276,8 +331,22 @@ namespace WindowsFormsApp1
         {
             if(e.KeyCode == Keys.Enter)
             {
-                fileToOpen = nameBox.Text;                
+                fileToOpen = nameBox.Text;
+
+                process.Text = "";
+                result.Text = "";
+
+                if (DialogResult.Yes == MessageBox.Show("You have chosen a file." + " Want to do the sorting? ", "Dialog", MessageBoxButtons.YesNo))
+                {
+                    DisplayGraph(fileToOpen);
+                }
+
+                else
+                {
+                    Close();
+                }
             }
+            
         }
 
         //
@@ -291,8 +360,11 @@ namespace WindowsFormsApp1
                 fileToOpen = FD.FileName;
                 isButtonClicked = true;
 
+                process.Text = "";
+                result.Text = "";
+
                 if (DialogResult.Yes == MessageBox.Show("You have chosen a file." + " Want to do the sorting? ", "Dialog", MessageBoxButtons.YesNo))
-                {
+                {                   
                     DisplayGraph(fileToOpen);       
                 }
 
@@ -300,7 +372,8 @@ namespace WindowsFormsApp1
                 {
                     Close();
                 }
-            }         
+            }
+            
         }
 
         //
@@ -310,9 +383,11 @@ namespace WindowsFormsApp1
         {
             try
             {
+                bfsClicked = true;
                 string fileKuliah = fileToOpen;
                 List<string> kuliah = File.ReadAllLines(fileKuliah).ToList();
                 List<Matkul> listMatkul = new List<Matkul>();
+                listMataKuliah = listMatkul;
                 List<Matkul> UrutanMatkul = new List<Matkul>();
                 foreach (string linekuliah in kuliah)
                 {
@@ -329,12 +404,7 @@ namespace WindowsFormsApp1
                 int semesterMatkul = 1;
                 BFS(listMatkul, semesterMatkul);
 
-                foreach (Matkul matkul in listMatkul)
-                {
-                    Console.WriteLine("Matkul " + matkul.nama + " diambil pada semester " + matkul.semester);
-                }
-
-                showGraph.Enabled = true;
+                showResult.Enabled = true;
             }
 
             catch (Exception ex)
@@ -422,11 +492,11 @@ namespace WindowsFormsApp1
         {
             try
             {
+                dfsClicked = true;
                 string fileOfCourses = fileToOpen;
                 List<string> wholeCourses = File.ReadAllLines(fileOfCourses).ToList();
                 List<Courses> listOfCourses = new List<Courses>();
-
-                int semester = 0;
+                listCourse = listOfCourses;
 
                 // Split courses and set its attributes
                 foreach (string course in wholeCourses)
@@ -505,13 +575,8 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-
-                foreach (Courses course in listOfCourses)
-                {
-                    Console.WriteLine("{0} is taken in semester {1}", course.nameOfCourses, course.semester);
-                }
-
-                showGraph.Enabled = true;
+                               
+                showResult.Enabled = true;
             }
 
             catch (Exception ex)
@@ -538,6 +603,8 @@ namespace WindowsFormsApp1
                 Courses.timeStamp += 1;
                 course.startTime = Courses.timeStamp;
                 course.courseChecked = true;
+                string text = course.nameOfCourses + " is visited" + "\n";
+                process.AppendText(text);
 
                 foreach (Courses adj in course.adjCourses)
                 {
@@ -549,6 +616,8 @@ namespace WindowsFormsApp1
 
                 Courses.timeStamp += 1;
                 course.endTime = Courses.timeStamp;
+                text = course.nameOfCourses + " done visited" + "\n";
+                process.AppendText(text);
                 solution.Add(course);
             }
         }
@@ -556,7 +625,7 @@ namespace WindowsFormsApp1
         //
         // Function to display graph that parsed from the file chosen
         //
-        public void DisplayGraph(string fileCourse)
+        private void DisplayGraph(string fileCourse)
         {
             List<string> wholeCourses = File.ReadAllLines(fileCourse).ToList();
             List<Courses> listOfCourses = new List<Courses>();
@@ -621,7 +690,33 @@ namespace WindowsFormsApp1
             form.Controls.Add(viewer);
             form.ResumeLayout();
             form.ShowDialog();
-        }     
+        }  
+        
+        //
+        // Function to display the result
+        //
+        public void Show_Result(object sender, EventArgs e)
+        {
+            if (dfsClicked)
+            {
+                foreach (Courses course in listCourse)
+                {
+                    String text = course.nameOfCourses + " is taken in semester " + course.semester + "\n";
+                    result.AppendText(text);
+                }
+                dfsClicked = false;
+            }
+
+            else
+            {
+                foreach (Matkul matkul in listMataKuliah)
+                {
+                    String text = matkul.nama + " is taken in semester " + matkul.semester + "\n";
+                    result.AppendText(text);
+                }
+                bfsClicked = false;
+            }
+        }
 
     }
 }
