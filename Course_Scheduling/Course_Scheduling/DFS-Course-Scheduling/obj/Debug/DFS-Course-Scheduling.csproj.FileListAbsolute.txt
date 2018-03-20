@@ -1,7 +1,0 @@
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\obj\Debug\DFS-Course-Scheduling.csprojResolveAssemblyReference.cache
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\obj\Debug\DFS-Course-Scheduling.csproj.CoreCompileInputs.cache
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\bin\Debug\DFS-Course-Scheduling.exe.config
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\bin\Debug\DFS-Course-Scheduling.exe
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\bin\Debug\DFS-Course-Scheduling.pdb
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\obj\Debug\DFS-Course-Scheduling.exe
-E:\DFS-Course-Scheduling\DFS-Course-Scheduling\obj\Debug\DFS-Course-Scheduling.pdb
