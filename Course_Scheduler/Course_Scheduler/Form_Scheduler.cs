@@ -387,6 +387,8 @@ namespace Course_Scheduler
         {
             try
             {
+                process.Text = "";
+                result.Text = "";
                 bfsClicked = true;
                 string fileKuliah = fileToOpen;
                 List<string> kuliah = File.ReadAllLines(fileKuliah).ToList();
@@ -425,6 +427,8 @@ namespace Course_Scheduler
                     {
                         if ((matkul.countSyarat == 0) && (!(checkSyarat2(listMatkul, matkul, semesterMatkul))))
                         {
+                            string text = matkul.nama + " is visited" + "\n";
+                            process.AppendText(text);
                             matkul.semester = semesterMatkul;
                             foreach (Matkul matkul1 in listMatkul)
                             {
@@ -439,6 +443,8 @@ namespace Course_Scheduler
                             }
                             matkul.countSyarat = -999;
                             matkul.matkulChecked = true;
+                            text = matkul.nama + " done visited" + "\n";
+                            process.AppendText(text);
                         }
                     }
                     semesterMatkul++;
@@ -496,6 +502,8 @@ namespace Course_Scheduler
         {
             try
             {
+                process.Text = "";
+                result.Text = "";
                 dfsClicked = true;
                 string fileOfCourses = fileToOpen;
                 List<string> wholeCourses = File.ReadAllLines(fileOfCourses).ToList();
@@ -703,6 +711,7 @@ namespace Course_Scheduler
         {
             if (dfsClicked)
             {
+                result.Text = "";
                 foreach (Courses course in listCourse)
                 {
                     String text = course.nameOfCourses + " is taken in semester " + course.semester + "\n";
@@ -713,6 +722,7 @@ namespace Course_Scheduler
 
             else
             {
+                result.Text = "";
                 foreach (Matkul matkul in listMataKuliah)
                 {
                     String text = matkul.nama + " is taken in semester " + matkul.semester + "\n";
