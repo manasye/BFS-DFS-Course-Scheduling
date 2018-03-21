@@ -30,8 +30,6 @@ C:\Users\gloginting13\Documents\GitHub\BFS-DFS-Course-Scheduling\Course_Schedule
 C:\Users\gloginting13\Documents\GitHub\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.CopyComplete
 C:\Users\gloginting13\Documents\GitHub\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.exe
 C:\Users\gloginting13\Documents\GitHub\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.pdb
-<<<<<<< HEAD
-=======
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csprojResolveAssemblyReference.cache
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.Properties.Resources.resources
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.GenerateResource.cache
@@ -48,4 +46,18 @@ E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\bin\Debug\Microso
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.Drawing.xml
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
 E:\BFS-DFS-Course-Scheduling\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.CopyComplete
->>>>>>> 75bb768f678c36b0c63e4d60f63711965e609913
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.Properties.Resources.resources
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.GenerateResource.cache
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.CoreCompileInputs.cache
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.exe
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.pdb
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Course_Scheduler.exe.config
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Course_Scheduler.exe
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Course_Scheduler.pdb
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.dll
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.Drawing.dll
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.xml
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.Drawing.xml
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+E:\BFS-DFS-Course-Scheduling\src\Course_Scheduler\Course_Scheduler\obj\Debug\Course_Scheduler.csproj.CopyComplete

@@ -58,7 +58,7 @@
     <Compile Include="Form_Scheduler.Designer.cs">
       <DependentUpon>Form_Scheduler.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
