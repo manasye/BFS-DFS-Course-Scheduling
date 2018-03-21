@@ -35,24 +35,13 @@ namespace Course_Scheduler
     {
         public Courses()
         {
-            numOfCourses++;
             List<string> adjCourses = new List<string>();
-        }
-        public static int numOfCourses;
-        public static int getNumCourses
-        {
-            get
-            {
-                return numOfCourses;
-            }
         }
         public bool courseChecked { get; set; }
         public static int timeStamp = 0;
         public int semester { get; set; }
         public string nameOfCourses { get; set; }
-        public int cOfAdj { get; set; }
         public List<Courses> adjCourses = new List<Courses>();
-        public float valOfTime { get; set; }
         public int startTime { get; set; }
         public int endTime { get; set; }
         public List<string> prerequisiteName = new List<string>();
@@ -523,7 +512,6 @@ namespace Course_Scheduler
                     thisCourse.endTime = 0;
                     thisCourse.semester = 0;
                     thisCourse.courseChecked = false;
-                    thisCourse.cOfAdj = prerequisiteName.Count;
                     listOfCourses.Add(thisCourse);
                 }
 
@@ -654,7 +642,6 @@ namespace Course_Scheduler
                 thisCourse.endTime = 0;
                 thisCourse.semester = 0;
                 thisCourse.courseChecked = false;
-                thisCourse.cOfAdj = prerequisiteName.Count;
                 listOfCourses.Add(thisCourse);
             }
             Form form = new Form();
